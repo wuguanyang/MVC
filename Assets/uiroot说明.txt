@@ -1,0 +1,5 @@
+RecyclePool：存放已经关闭的
+WorkStation：当前显示的
+NoticeStation：提示性窗体，在其他窗体最前面
+
+或者可能还会增加一些别的。如果不够用
