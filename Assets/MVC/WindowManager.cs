@@ -8,12 +8,22 @@ using UnityEngine;
 using EM;
 using System.Collections.Generic;
 
-public class WindowManager : Singleton<WindowManager> {
+public class WindowManager : MonoSingleton<WindowManager> {
 
     Dictionary<WindowType, BaseWindow> windowDic = new Dictionary<WindowType, BaseWindow>();
-    public WindowManager() { 
-        //这是在干嘛
+    private WindowManager() {
+        //Add component 的时候调用构造函数
+        windowDic.Add(WindowType.StoreWindow, new StoreWindow());
     }
+
+    public void Update() {
+        foreach (var window in windowDic.Values) {
+            if (window.IsVisiable()) {
+                window.Update(Time.deltaTime);
+            }
+        }
+    }
+
     public BaseWindow OpenWindos(WindowType type) {
         BaseWindow window;
         if (windowDic.TryGetValue(type,out window)) {

@@ -33,6 +33,7 @@ public class BaseWindow
     //窗体初始化
     protected virtual void Awake() {
         buttonList = transform.GetComponentsInChildren<Button>(true);
+        RegisterUIEvent();
     }
     //ui事件的注册
     protected virtual void RegisterUIEvent() { }
@@ -45,7 +46,7 @@ public class BaseWindow
     //每次关闭
     protected virtual void OnDisable() { }
     //每帧更新
-    protected virtual void Update(float deltaTime) { }
+    public virtual void Update(float deltaTime) { }
 
 
     //----给windowmanager提供的借口
@@ -72,6 +73,7 @@ public class BaseWindow
             if (!isDestory) {
                 if (resident) {
                     transform.gameObject.SetActive(false);
+                    UIRoot.SetParent(transform, false, false);
                 }
                 else {
                     GameObject.Destroy(transform.gameObject);

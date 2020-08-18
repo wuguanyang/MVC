@@ -18,6 +18,11 @@ public class StoreModel : Singleton<StoreModel>
             dict.Add(prop.id,prop);
         }
     }
+
+    public Prop GetProp(int id) {
+        return dict[id];
+    }
+
 }
 //道具
 public class Prop {
